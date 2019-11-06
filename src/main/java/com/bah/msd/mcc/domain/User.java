@@ -3,9 +3,10 @@ package com.bah.msd.mcc.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "USERS")
@@ -23,9 +24,6 @@ public class User {
 	String email;
 
 	
-	public User(String name, String password, String email) {
-		
-	}
 
 	public long getId() {
 		return id;

@@ -18,9 +18,11 @@ public class InMemoryRepository {
 	}
 	
 	public void createUser() {
-		users.add(new User("Hasan", "2313243", "hasan.tennis@gmail.com"));
-		users.add(new User("Hasan", "2313243", "hasan.tennis@gmail.com"));
-		users.add(new User("Hasan", "2313243", "hasan.tennis@gmail.com"));
+		/*
+		 * users.add(new User("Hasan", "2313243", "hasan.tennis@gmail.com"));
+		 * users.add(new User("Hasan", "2313243", "hasan.tennis@gmail.com"));
+		 * users.add(new User("Hasan", "2313243", "hasan.tennis@gmail.com"));
+		 */
 	}
 	
 	public List<User> listAllUsers() {
