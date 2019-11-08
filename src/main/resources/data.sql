@@ -1,4 +1,4 @@
-INSERT INTO USERS (USER_NAME, PASSWORD, EMAIL) VALUES('hollandjb', 'hollandjb@vcu.edu', 'benjamin');
-INSERT INTO USERS (USER_NAME, PASSWORD, EMAIL) VALUES('Hasan', 'hasan@yahoo.com', 'hasan');
-INSERT INTO USERS (USER_NAME, EMAIL, PASSWORD) VALUES('Julie', 'julie@gmail.com', 'password');
+INSERT INTO USERS (USER_NAME, PASSWORD, EMAIL) VALUES('hollandjb', 'benjamin', 'hollandjb@vcu.edu');
+INSERT INTO USERS (USER_NAME, PASSWORD, EMAIL) VALUES('Hasan', 'hasan', 'hasan@yahoo.com');
+INSERT INTO USERS (USER_NAME, PASSWORD, EMAIL) VALUES('Julie', 'password', 'julie@gmail.com');
 

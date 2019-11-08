@@ -3,10 +3,9 @@ package com.bah.msd.mcc.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "USERS")
@@ -14,7 +13,7 @@ public class User {
 
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 
 	@Column(name = "USER_NAME")
@@ -31,7 +30,7 @@ public class User {
 
 	public void setId(long id) {
 		this.id = id;
-	}
+  }
 
 	public String getName() {
 		return name;
@@ -56,4 +55,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + "]";
+	}
+	
 }

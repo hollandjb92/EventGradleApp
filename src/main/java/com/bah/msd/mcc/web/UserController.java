@@ -1,6 +1,5 @@
 package com.bah.msd.mcc.web;
 
-import java.net.URI;
 import java.util.Optional;
 
 //import org.hibernate.mapping.Collection;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
-
 import com.bah.msd.mcc.domain.User;
 import com.bah.msd.mcc.repository.UserRepository;
 import com.bah.msd.mcc.service.UserService;
@@ -33,9 +29,9 @@ public class UserController {
 	private UserRepository repo;
 
 	
-	@GetMapping
+	@GetMapping("/all")
 	public Iterable<User> getAll(){
-	return repo.findAll();
+		return repo.findAll();
 	}
 	
 //	@GetMapping("/{userId}")
@@ -44,55 +40,42 @@ public class UserController {
 //	}
 	
 	@GetMapping("/{userName}")
-	public User getUserByName(@PathVariable("userName") String name){
-		
-		return repo.findByName(name);
-	
-
+	public User getUserByName(@PathVariable("userName") String userName){
+		return repo.findByName(userName);
 	}
 	
 	@DeleteMapping ("/{userName}")
-	public ResponseEntity<?> deleteById( @PathVariable String userName) {
+	public ResponseEntity<?> deleteByName( @PathVariable("userName") String userName) {
 		
 		if (repo.findByName(userName) == null){
-					return ResponseEntity.badRequest().build();
-				}
+			return ResponseEntity.badRequest().build();
+		}
 		
-	 repo.delete(this.getUserByName(userName));
-	 return ResponseEntity.ok().build();
+		repo.delete(this.getUserByName(userName));
+		return ResponseEntity.ok().build();
 
 	}
 	
-	
 	@PostMapping
-	public ResponseEntity<?> addUser(@RequestBody User newUser, UriComponentsBuilder uri){
-		if (newUser.getId() != 0
-			|| newUser.getName() == null
-			|| newUser.getEmail() == null
-			|| newUser.getPassword() == null){
-				return ResponseEntity.badRequest().build();
+	public ResponseEntity<?> addUser(@RequestBody User newUser){
+			if(newUser.getName() == null
+			    || newUser.getPassword() == null
+			    || newUser.getEmail() == null) {
+				
 			}
-			
 			newUser = repo.save(newUser);
-			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getId()).toUri();
-			ResponseEntity<?> response = ResponseEntity.created(location).build();
-			return response;
+			return ResponseEntity.ok().build();
 	}
 	
 	@PutMapping("/{userName}")
-	public ResponseEntity<?> putUser(@RequestBody User newUser, @PathVariable("userName") String userName){
-		if (newUser.getName() == null
-				|| newUser.getEmail() == null
-				|| newUser.getPassword() == null){
-					return ResponseEntity.badRequest().build();
-				}
-		
+	public ResponseEntity<?> updateByName(@RequestBody User newUser, @PathVariable("userName") String userName){
+		if(newUser == null || repo.findByName(userName) == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		newUser.setId(repo.findByName(userName).getId());
 		newUser = repo.save(newUser);
 		return ResponseEntity.ok().build();
 	}
-	
-
-
 	
 	
 }
