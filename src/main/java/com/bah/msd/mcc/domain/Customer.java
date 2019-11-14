@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USERS")
-public class User {
+public class Customer {
 
 	
 	@Id
@@ -23,7 +23,7 @@ public class User {
 	String email;
 
 	
-
+	public Customer() {}
 	public long getId() {
 		return id;
 	}
@@ -56,9 +56,6 @@ public class User {
 		this.email = email;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + "]";
-	}
+	
 	
 }
