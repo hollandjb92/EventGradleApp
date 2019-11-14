@@ -1,6 +1,6 @@
 package com.bah.msd.mcc.domain;
 
-public class Token {
+public class Token { //this is a token
 	String token;
 	
 	public Token() {}
