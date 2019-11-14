@@ -48,13 +48,13 @@ public class RegistrationAPI {
 		return response;
 	}
 
-	@PutMapping("/{eventId}")
-	public ResponseEntity<?> putRegistration(@RequestBody Registration newRegistration,@PathVariable("eventId") long eventId) 
+	@PutMapping("/{registrationId}")
+	public ResponseEntity<?> putRegistration(@RequestBody Registration newRegistration,@PathVariable("registrationId") long id) 
 	{
-		if (!repo.existsById(eventId)) { //|| newRegistration.getRegistration_date() == null) {
+		if (newRegistration.getEvent_id().equals(null) || newRegistration.getCustomer_id().equals(null)
+				||newRegistration.getNotes().equals(null) || newRegistration.getRegistration_date().equals(null)) { //|| newRegistration.getRegistration_date() == null) {
 			return ResponseEntity.badRequest().build();
 		}
-		newRegistration.setId(repo.findById(eventId).get().getId());
 		newRegistration = repo.save(newRegistration);
 		return ResponseEntity.ok().build();
 	}	

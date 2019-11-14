@@ -81,9 +81,19 @@ public class CustomerAPI {
 			return response;
 	}
 	
+	@PostMapping("/register")
+	public ResponseEntity<?> registerUser(@RequestBody Customer newUser){
+			if(newUser.getName() == null
+			    || newUser.getPassword() == null
+			    || newUser.getEmail() == null) {
+				return ResponseEntity.badRequest().build();
+			}
+			newUser = repo.save(newUser);
+			return ResponseEntity.ok().build();
+	}
+	
 	@PutMapping("/{userId}")
 	public ResponseEntity<?> updateByName(@RequestBody Customer newUser, @PathVariable("userId") long id){
-		System.out.println("I am registering a user");
 		if(newUser.getName() == null
 			    || newUser.getPassword() == null
 			    || newUser.getEmail() == null) {

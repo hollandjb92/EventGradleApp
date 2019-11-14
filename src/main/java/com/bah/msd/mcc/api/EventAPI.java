@@ -55,7 +55,6 @@ public class EventAPI {
 		if (newEvent.getCode() == null || newEvent.getTitle() == null || newEvent.getDescription() == null) {
 			return ResponseEntity.badRequest().build();
 		}
-		newEvent.setId(repo.findById(eventId).get().getId());
 		newEvent = repo.save(newEvent);
 		return ResponseEntity.ok().build();
 	}	
